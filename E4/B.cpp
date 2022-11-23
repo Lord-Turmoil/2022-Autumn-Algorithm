@@ -52,7 +52,7 @@ int main()
 	int n, m;
 	int u, v, w;
 
-	scanf("%d %d", &n, &m);
+	scanf("%d %d %*d", &n, &m);
 	for (int i = 0; i < m; i++)
 	{
 		scanf("%d %d %d", &u, &v, &w);
@@ -68,8 +68,8 @@ long long prim(int src, int vertexNum)
 {
 	std::priority_queue<
 		std::pair<int, int>,
-		std::vector<std::pair<int, int>>,
-		std::greater<std::pair<int, int>>> heap;
+		std::vector<std::pair<int, int> >,
+		std::greater<std::pair<int, int> > > heap;
 	long long ret = 0;
 	int cnt = 0;	// just the src
 	int u, v, w;
@@ -86,6 +86,10 @@ long long prim(int src, int vertexNum)
 		if (flag[u])
 			continue;
 		flag[u] = true;
+		
+		printf("N0.%d chosen vertex %d\n", cnt, u);
+		
+		
 		ret += (long long)w;
 		cnt++;
 		if (cnt == vertexNum)
@@ -95,10 +99,11 @@ long long prim(int src, int vertexNum)
 		{
 			v = edge[i].v;
 			w = edge[i].w;
-			if (dist[v] > w)
+//			if (dist[v] > w)
 			{
-				dist[v] = w;
-				heap.push(std::make_pair(dist[v], v));
+//				dist[v] = w;
+//				heap.push(std::make_pair(dist[v], v));
+				heap.push(std::make_pair(w, v));
 			}
 		}
 	}
