@@ -82,10 +82,10 @@ private:
 /********************************************************************
 ** Sort by the left of interval.
 */
-class SBTree
+class IntervalTree
 {
 public:
-	SBTree() : m_root(nullptr), m_size(0) {}
+	IntervalTree() : m_root(nullptr), m_size(0) {}
 
 	void Insert(Interval interval) { _Insert(m_root, interval); }
 	bool WithinSearch(int index) { return _WithinSearch(m_root, index); }
@@ -103,7 +103,7 @@ private:
 	BlockAllocator<Node> m_alloc;
 };
 
-bool SBTree::_WithinSearch(Node* root, int index)
+bool IntervalTree::_WithinSearch(Node* root, int index)
 {
 	if (!root)
 		return false;
@@ -122,7 +122,7 @@ bool SBTree::_WithinSearch(Node* root, int index)
 	return false;
 }
 
-void SBTree::_Insert(Node*& root, Interval interval)
+void IntervalTree::_Insert(Node*& root, Interval interval)
 {
 	if (!root)
 	{
@@ -147,7 +147,7 @@ void SBTree::_Insert(Node*& root, Interval interval)
 	}
 }
 
-void SBTree::_Maintain(Node*& root, bool flag)
+void IntervalTree::_Maintain(Node*& root, bool flag)
 {
 	if (!flag)  // left has been changed, so only check left
 	{
@@ -187,7 +187,7 @@ void SBTree::_Maintain(Node*& root, bool flag)
 	_Maintain(root, false);
 }
 
-void SBTree::_LeftRotate(Node*& root)
+void IntervalTree::_LeftRotate(Node*& root)
 {
 	Node* newRoot = root->right;
 	if (!newRoot)
@@ -206,7 +206,7 @@ void SBTree::_LeftRotate(Node*& root)
 	root = newRoot;
 }
 
-void SBTree::_RightRotate(Node*& root)
+void IntervalTree::_RightRotate(Node*& root)
 {
 	Node* newRoot = root->left;
 
@@ -231,8 +231,8 @@ int main()
 	int n, m;
 	int left, right;
 	int op, x;
-	SBTree tree;
-	SBTree dump;
+	IntervalTree tree;
+	IntervalTree dump;
 
 	scanf("%d %d", &n, &m);
 	for (int i = 0; i < n; i++)
