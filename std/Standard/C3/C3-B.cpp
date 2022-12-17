@@ -7,7 +7,7 @@ LL m[maxn][maxn],s[maxn][maxn];
 LL a[maxn],n;
 void Matrixchain() {
 	for(LL l=2; l<=n; l++)
-		for(LL i=0; i<=n-l+1; i++) {
+		for(LL i=1; i<=n-l+1; i++) {
 			LL j = i+l-1;
 			m[i][j] = INF;
 			for(LL k = i; k<j; k++) {
