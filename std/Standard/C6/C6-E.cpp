@@ -8,15 +8,21 @@ int SA[maxn], rnk[maxn];
 void build(char *s, int n, int m) {
 	int *x = a, *y = b;
 	s[n + 1] = 0;
-	for (int i = 0; i <= n * 2 && i < maxn; i++) a[i] = b[i] = SA[i] = rnk[i] = 0;
-	for (int i = 1; i <= m; i++) c[i] = 0;
-	for (int i = 1; i <= n; i++) c[x[i] = s[i]]++;
+	for (int i = 0; i <= n * 2 && i < maxn; i++)
+		a[i] = b[i] = SA[i] = rnk[i] = 0;
+	for (int i = 1; i <= m; i++)
+		c[i] = 0;
+	for (int i = 1; i <= n; i++)
+		c[x[i] = s[i]]++;
 	for (int i = 1; i <= m; i++) c[i] += c[i - 1];
 	for (int i = n; i; i--) SA[c[x[i]]--] = i;
 	for (int j = 1, p = 0; j <= n && p != n + 1; j <<= 1) {
 		p = 0;
-		for (int i = n - j + 1; i <= n; i++) y[++p] = i;
-		for (int i = 1; i <= n; i++) if (SA[i] > j) y[++p] = SA[i] - j;
+		for (int i = n - j + 1; i <= n; i++)
+			y[++p] = i;
+		for (int i = 1; i <= n; i++)
+			if (SA[i] > j)
+				y[++p] = SA[i] - j;
 		for (int i = 1; i <= m; i++) c[i] = 0;
 		for (int i = 1; i <= n; i++) c[x[y[i]]]++;
 		for (int i = 1; i <= m; i++) c[i] += c[i - 1];
